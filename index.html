@@ -32,8 +32,23 @@
     position:fixed;
     inset:0;
     background:
-      radial-gradient(600px 400px at 18% 0%, rgba(145,70,255,.20), transparent 60%),
-      radial-gradient(700px 500px at 92% 8%, rgba(255,77,210,.15), transparent 55%);
+      radial-gradient(620px 440px at 15% -5%, rgba(145,70,255,.22), transparent 60%),
+      radial-gradient(720px 520px at 95% 8%, rgba(255,77,210,.16), transparent 55%),
+      radial-gradient(680px 520px at 50% 118%, rgba(61,120,255,.16), transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+  /* texture de fond : grille de points + lignes diagonales subtiles */
+  body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    background-image:
+      radial-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 1px, transparent 1px 26px);
+    background-size:24px 24px, auto;
+    -webkit-mask-image:radial-gradient(circle at 50% 32%, #000 0%, rgba(0,0,0,.4) 55%, transparent 80%);
+    mask-image:radial-gradient(circle at 50% 32%, #000 0%, rgba(0,0,0,.4) 55%, transparent 80%);
     pointer-events:none;
     z-index:0;
   }
@@ -171,7 +186,7 @@
 
       <a class="link" href="https://osu.ppy.sh/users/17461340" target="_blank" rel="noopener">
         <span class="ico osu"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 3.2a6.8 6.8 0 1 1 0 13.6 6.8 6.8 0 0 1 0-13.6zm0 3a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6z"/></svg></span>
-        osu! profil
+        osu!
         <span class="meta"><span class="arrow">›</span></span>
       </a>
     </div>
