@@ -121,6 +121,10 @@
     display:flex;align-items:center;justify-content:center;
   }
   .ico svg{width:21px;height:21px;fill:#fff;}
+  .ico .mi{display:block;background:#fff;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain;}
+  .ico.osu .mi{width:28px;height:24px;}
+  .dc{background:#5865F2;}
+  .dc .mi{width:23px;height:23px;}
   .tw{background:#9146ff;}
   .yt{background:#ff0033;}
   .tk{background:#000;border:1px solid #2a2f38;}
@@ -190,8 +194,14 @@
       </a>
 
       <a class="link" href="https://osu.ppy.sh/users/17461340" target="_blank" rel="noopener">
-        <span class="ico osu"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm0 3.2a6.8 6.8 0 1 1 0 13.6 6.8 6.8 0 0 1 0-13.6zm0 3a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6z"/></svg></span>
+        <span class="ico osu"><i class="mi" style="-webkit-mask-image:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/osu.svg');mask-image:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/osu.svg');"></i></span>
         osu!
+        <span class="meta"><span class="arrow">›</span></span>
+      </a>
+
+      <a class="link" href="https://discord.gg/wFj8qhUxBw" target="_blank" rel="noopener">
+        <span class="ico dc"><i class="mi" style="-webkit-mask-image:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/discord.svg');mask-image:url('https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/discord.svg');"></i></span>
+        Discord — osu!fr
         <span class="meta"><span class="arrow">›</span></span>
       </a>
     </div>
