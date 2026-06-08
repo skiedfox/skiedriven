@@ -223,7 +223,7 @@
     window.addEventListener('resize',resize);
 
     var colors=['#ff4dd2','#9146ff','#3dd1ff'];
-    var APPROACH=850, HIT=300, LIFE=APPROACH+HIT;
+    var APPROACH=850, HIT=300, LIFE=APPROACH+HIT, SLIDE=380;
     var circles=[], combo=0;
     var mx=-999,my=-999, lastSpawn={x:-9999,y:-9999}, trail=[];
 
@@ -232,19 +232,19 @@
       var now=performance.now();
       trail.push({x:mx,y:my,t:now});
       if(trail.length>24) trail.shift();
-      var spacing=Math.min(W,H)*0.13;
+      var spacing=Math.min(W,H)*0.21;
       var dx=mx-lastSpawn.x, dy=my-lastSpawn.y;
       if(dx*dx+dy*dy > spacing*spacing){
         combo=(combo%9)+1;
         circles.push({x:mx,y:my,t0:now,c:colors[(combo-1)%3],n:combo});
-        if(circles.length>9) circles.shift();
+        if(circles.length>6) circles.shift();
         lastSpawn={x:mx,y:my};
       }
     });
     window.addEventListener('mousedown',function(e){
       combo=(combo%9)+1;
       circles.push({x:e.clientX,y:e.clientY,t0:performance.now(),c:colors[(combo-1)%3],n:combo});
-      if(circles.length>9) circles.shift();
+      if(circles.length>6) circles.shift();
     });
     window.addEventListener('mouseout',function(e){ if(!e.relatedTarget){ mx=-999; my=-999; } });
 
@@ -278,9 +278,19 @@
         var sa=circles[i], sb=circles[i+1];
         var aa=Math.max(0,1-(now-sa.t0)/LIFE);
         if(aa<=0) continue;
-        ctx.strokeStyle='rgba(255,255,255,'+(0.06*aa)+')';
-        ctx.lineWidth=R*1.3;
+        ctx.strokeStyle='rgba(255,255,255,'+(0.08*aa)+')';
+        ctx.lineWidth=R*1.4;
         ctx.beginPath(); ctx.moveTo(sa.x,sa.y); ctx.lineTo(sb.x,sb.y); ctx.stroke();
+        // boule de slider qui parcourt le segment
+        var st=(now-sb.t0)/SLIDE;
+        if(st>=0 && st<=1){
+          var bx=sa.x+(sb.x-sa.x)*st, by=sa.y+(sb.y-sa.y)*st;
+          ctx.globalAlpha=0.55; ctx.strokeStyle=sb.c; ctx.lineWidth=2.5;
+          ctx.beginPath(); ctx.arc(bx,by,R*1.35,0,6.2832); ctx.stroke();
+          ctx.globalAlpha=0.92; ctx.fillStyle=sb.c;
+          ctx.beginPath(); ctx.arc(bx,by,R*0.6,0,6.2832); ctx.fill();
+          ctx.globalAlpha=1;
+        }
       }
       for(var k=0;k<circles.length;k++){
         var o=circles[k], age=now-o.t0;
